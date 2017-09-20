@@ -1,5 +1,9 @@
 # Alibaba Cloud STS SDK for Go
 
+[![GitHub Version](https://badge.fury.io/gh/baiyubin%2Faliyun-sts-go-sdk.svg)](https://badge.fury.io/gh/baiyubin%2Faliyun-sts-go-sdk)
+[![Build Status](https://travis-ci.org/baiyubin/aliyun-sts-go-sdk.svg?branch=master)](https://travis-ci.org/baiyubin/aliyun-sts-go-sdk)
+[![Coverage Status](https://coveralls.io/repos/github/baiyubin/aliyun-sts-go-sdk/badge.svg?branch=master)](https://coveralls.io/github/baiyubin/aliyun-sts-go-sdk?branch=master)
+
 ## 关于
 阿里云[STS](https://help.aliyun.com/document_detail/28756.html)(Security Token Service) 是为阿里云账号（或[RAM](https://help.aliyun.com/document_detail/28627.html)用户）提供短期访问权限管理的云服务。通过STS，您可以为联盟用户（您的本地账号系统所管理的用户）颁发一个自定义时效和访问权限的访问凭证。联盟用户可以使用STS短期访问凭证直接调用阿里云服务API，或登录阿里云管理控制台操作被授权访问的资源。
 
