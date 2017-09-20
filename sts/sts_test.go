@@ -1,6 +1,7 @@
 package sts
 
 import (
+	"log"
 	"os"
 	"testing"
 	"time"
@@ -96,6 +97,7 @@ func (s *StsTestSuite) TestAssumeRoleNegative(c *C) {
 	resp, err := client.AssumeRole(900)
 	c.Assert(resp, IsNil)
 	c.Assert(err, NotNil)
+	log.Println("Error:", err)
 
 	srvErr, isSuc := err.(*ServiceError)
 	c.Assert(isSuc, Equals, true)
@@ -104,6 +106,7 @@ func (s *StsTestSuite) TestAssumeRoleNegative(c *C) {
 	c.Assert(len(srvErr.Message) > 0, Equals, true)
 	c.Assert(len(srvErr.RawMessage) > 0, Equals, true)
 	c.Assert(len(srvErr.RequestId) > 0, Equals, true)
+	log.Println("ServiceError:", srvErr)
 
 	// AccessKeySecret invalid
 	client = NewClient(accessKeyId, accessKeySecret+" ", roleArn, "sts_test")
@@ -115,6 +118,7 @@ func (s *StsTestSuite) TestAssumeRoleNegative(c *C) {
 	c.Assert(isSuc, Equals, true)
 	c.Assert(srvErr.StatusCode, Equals, 400)
 	c.Assert(srvErr.Code, Equals, "SignatureDoesNotMatch")
+	log.Println("ServiceError:", srvErr)
 
 	// SessionName invalid
 	client = NewClient(accessKeyId, accessKeySecret, roleArn, "x")
@@ -127,4 +131,5 @@ func (s *StsTestSuite) TestAssumeRoleNegative(c *C) {
 	c.Assert(isSuc, Equals, true)
 	c.Assert(srvErr.StatusCode, Equals, 400)
 	c.Assert(srvErr.Code, Equals, "InvalidParameter.RoleSessionName")
+	log.Println("ServiceError:", srvErr)
 }
