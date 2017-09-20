@@ -54,7 +54,7 @@ func main() {
 ```
 
 ## 作者
-- Yubin Bai
+- [Yubin Bai](https://github.com/baiyubin)
 
 ## 协议
-- MIT
+- [MIT](https://github.com/baiyubin/aliyun-sts-go-sdk/blob/master/LICENSE)
