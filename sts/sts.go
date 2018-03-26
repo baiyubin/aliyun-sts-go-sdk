@@ -106,6 +106,11 @@ func (c *Client) AssumeRole(expiredTime uint) (*Response, error) {
 
 // Private function
 func (c *Client) generateSignedURL(expiredTime uint) (string, error) {
+	uuid, err := uuid.NewV4()
+	if err != nil {
+		return "", err
+	}
+
 	queryStr := "SignatureVersion=" + StsSignVersion
 	queryStr += "&Format=" + RespBodyFormat
 	queryStr += "&Timestamp=" + url.QueryEscape(time.Now().UTC().Format(TimeFormat))
@@ -115,7 +120,7 @@ func (c *Client) generateSignedURL(expiredTime uint) (string, error) {
 	queryStr += "&SignatureMethod=HMAC-SHA1"
 	queryStr += "&Version=" + StsAPIVersion
 	queryStr += "&Action=AssumeRole"
-	queryStr += "&SignatureNonce=" + uuid.NewV4().String()
+	queryStr += "&SignatureNonce=" + uuid.String()
 	queryStr += "&DurationSeconds=" + strconv.FormatUint((uint64)(expiredTime), 10)
 
 	// Sort query string
