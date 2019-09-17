@@ -13,7 +13,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/satori/go.uuid"
+	"github.com/google/uuid"
 )
 
 // Client sts client
@@ -106,7 +106,7 @@ func (c *Client) AssumeRole(expiredTime uint) (*Response, error) {
 
 // Private function
 func (c *Client) generateSignedURL(expiredTime uint) (string, error) {
-	uuid, err := uuid.NewV4()
+	uuid, err := uuid.NewRandom()
 	if err != nil {
 		return "", err
 	}
