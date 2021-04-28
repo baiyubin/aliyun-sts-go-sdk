@@ -106,11 +106,8 @@ func (c *Client) AssumeRole(expiredTime uint) (*Response, error) {
 
 // Private function
 func (c *Client) generateSignedURL(expiredTime uint) (string, error) {
-	uuid, err := uuid.NewV4()
-	if err != nil {
-		return "", err
-	}
-
+	uuid := uuid.NewV4()
+	
 	queryStr := "SignatureVersion=" + StsSignVersion
 	queryStr += "&Format=" + RespBodyFormat
 	queryStr += "&Timestamp=" + url.QueryEscape(time.Now().UTC().Format(TimeFormat))
